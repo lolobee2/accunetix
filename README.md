@@ -1,5 +1,8 @@
 Run: 
-```docker build .```
+```
+docker build . --tag acunetix
+docker run -d -p 3443:3443 --name acunetix acunetix
+```
 
 
 Login Info
