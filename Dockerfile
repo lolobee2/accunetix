@@ -1,4 +1,4 @@
-FROM kalilinux/kali-linux-docker
+FROM kalilinux/kali-rolling
 
 RUN apt-get update -y && \
     apt-get -y install libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 sudo bzip2 wget expect libxdamage1 libgtk-3-0 libasound2 libnss3 libxss1 libx11-xcb1
@@ -13,4 +13,6 @@ ADD license_info.json /tmp/license_info.json
 RUN cd /tmp && chmod +x /tmp/install.expect && expect /tmp/install.expect
 RUN cp /tmp/wvsc /home/acunetix/.acunetix/v_200715107/scanner/
 RUN cp /tmp/license_info.json /home/acunetix/.acunetix/data/license/
+RUN apt-get install -y libicu55
+RUN ln -s /usr/lib/x86_64-linux-gnu/libicui18n.so /usr/lib/x86_64-linux-gnu/libicui18n.so.61
 CMD su -l acunetix -c /home/acunetix/.acunetix/start.sh
